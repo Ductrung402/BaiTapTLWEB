@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    margin-left: 2em;
+    margin-right: 2em;
+    color: #333;
+}
+
+h1 {
+    color: teal;
+    margin-bottom: 0.3em;
+    margin-top: 0.5em;
+}
+
+h2 {
+    color: teal;
+    font-size: 1.05em;
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+}
+
+/* Căn chỉnh các ô nhập thông tin cá nhân */
+.form-group {
+    margin-bottom: 0.4em;
+}
+
+.form-group label {
+    display: inline-block;
+    width: 8em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 14em;
+    padding: 2px;
+}
+
+/* Tùy chỉnh radio buttons nằm ngang */
+.radio-group input[type="radio"] {
+    margin-left: 0.8em;
+    margin-right: 0.2em;
+}
+
+.radio-group input[type="radio"]:first-child {
+    margin-left: 0;
+}
+
+.radio-group label {
+    display: inline;
+    margin-right: 0.5em;
+}
+
+/* Tùy chỉnh checkboxes */
+.checkbox-group {
+    margin-bottom: 0.4em;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 0.4em;
+}
+
+.checkbox-group label {
+    display: inline;
+}
+
+/* Phần lựa chọn phương thức liên hệ */
+.contact-group {
+    margin-top: 0.8em;
+    margin-bottom: 1em;
+}
+
+.contact-group label {
+    margin-right: 0.3em;
+}
+
+#submit {
+    padding: 2px 10px;
+    cursor: pointer;
+}
+/* ===================================================
+   ĐỊNH DẠNG BẢNG TOÀN DIỆN CHO CD LIST VÀ CART
+   =================================================== */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 750px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d3d3d3;
+}
+
+/* Hàng tiêu đề */
+th {
+    background-color: #008080;
+    color: #ffffff;
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-bottom: 2px solid #005959;
+}
+
+/* Các ô dữ liệu */
+td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+/* Màu nền so le cho các dòng */
+tr:nth-child(even) {
+    background-color: #f7fafc;
+}
+
+/* Hiệu ứng rê chuột qua dòng */
+tr:hover {
+    background-color: #edf2f7;
+}
+
+/* Căn lề phải cho ô giá tiền có class="right" */
+td.right, th.right {
+    text-align: right;
+    font-weight: bold;
+    color: #2c3e50;
+    padding-right: 20px;
+}
+
+/* Nút bấm bên trong bảng (Add To Cart, Update) */
+td input[type="submit"] {
+    background-color: #008080;
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+td input[type="submit"]:hover {
+    background-color: #004d4d;
+}
+
+/* Link Remove Item trong bảng của bài 7-3 */
+td a {
+    color: #c0392b;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+
+td a:hover {
+    background-color: #fadbd8;
+    text-decoration: underline;
+}
+
+/* Bỏ margin thừa của form bên trong ô bảng */
+td form {
+    margin: 0;
+    padding: 0;
+}
