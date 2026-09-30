@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package murach.download;
 
 import java.io.IOException;
@@ -160,4 +161,143 @@ public class DownloadServlet extends HttpServlet {
         session.invalidate();
         return "/index.jsp";
     }
+=======
+package murach.download;
+
+import java.io.IOException;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import murach.business.Product;
+import murach.data.ProductIO;
+import murach.business.User;
+import murach.data.UserIO;
+import murach.util.CookieUtil;
+
+@WebServlet("/download")
+public class DownloadServlet extends HttpServlet {
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "viewAlbums";
+        }
+
+        String url = "/index.jsp";
+        if (action.equals("viewAlbums")) {
+            url = "/index.jsp";
+        } else if (action.equals("checkUser")) {
+            url = checkUser(request, response);
+        } else if (action.equals("viewCookies")) {
+            url = "/viewCookies.jsp";
+        } else if (action.equals("deleteCookies")) {
+            url = deleteCookies(request, response);
+        }
+
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+        String action = request.getParameter("action");
+        String url = "/index.jsp";
+
+        if (action.equals("registerUser")) {
+            url = registerUser(request, response);
+        }
+
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
+    }
+
+    private String checkUser(HttpServletRequest request, HttpServletResponse response) {
+    String productCode = request.getParameter("productCode");
+    HttpSession session = request.getSession();
+
+    // Lấy Product từ file và lưu cả Object vào Session
+    ServletContext sc = this.getServletContext();
+    String productPath = sc.getRealPath("/WEB-INF/products.txt");
+    Product product = ProductIO.getProduct(productCode, productPath);
+    session.setAttribute("product", product);
+
+    User user = (User) session.getAttribute("user");
+    String url;
+
+    if (user == null) {
+        Cookie[] cookies = request.getCookies();
+        String emailAddress = CookieUtil.getCookieValue(cookies, "userEmail");
+
+        if (emailAddress == null || emailAddress.isEmpty()) {
+            url = "/register.jsp";
+        } else {
+            String userPath = sc.getRealPath("/WEB-INF/EmailList.txt");
+            user = UserIO.getUser(emailAddress, userPath);
+            session.setAttribute("user", user);
+            url = "/" + productCode + "_download.jsp";
+        }
+    } else {
+        url = "/" + productCode + "_download.jsp";
+    }
+    return url;
+}
+
+    private String registerUser(HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+
+        User user = new User();
+        user.setEmail(email);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+
+        ServletContext sc = getServletContext();
+        String path = sc.getRealPath("/WEB-INF/EmailList.txt");
+        UserIO.add(user, path);
+
+        // Lưu vào Session
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+
+        // Tạo Cookie tên "userEmail" và thời hạn 3 năm 
+        Cookie c = new Cookie("userEmail", email);
+        c.setMaxAge(60 * 60 * 24 * 365 * 3);
+        c.setPath("/");
+        response.addCookie(c);
+
+        // Lấy đối tượng Product từ session để lấy ra productCode dựng URL
+        Product product = (Product) session.getAttribute("product");
+        String url = "/" + product.getCode() + "_download.jsp";
+        return url;
+    }
+
+    private String deleteCookies(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
+        }
+        // Xóa session hiện tại
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "/index.jsp";
+    }
+>>>>>>> b1afbd999bd42958f471e97f7700f611520e5d6a
 }
