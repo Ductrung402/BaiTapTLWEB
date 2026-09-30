@@ -56,9 +56,9 @@ public class EmailListServlet extends HttpServlet {
             user.setEmail(email);
             
             // Kiểm tra xem email đã tồn tại chưa để tránh lỗi trùng lặp, sau đó insert
-            if (!UserDB.emailExists(email)) {
-                UserDB.insert(user);
-            }
+//            if (!UserDB.emailExists(email)) {
+//                UserDB.insert(user);
+//            }
 
             // TÍCH HỢP JAVA MAIL (Bài 14-1): Gửi email chào mừng/xác nhận
             String to = email;
