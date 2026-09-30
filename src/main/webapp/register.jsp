@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<<<<<< HEAD
+
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <c:import url="/includes/header.jsp" />
-=======
-<%@ include file="/includes/header.html" %>
->>>>>>> b1afbd999bd42958f471e97f7700f611520e5d6a
+
 
     <h1>Download Registration</h1>
     <p>Please enter your name and email address to download our songs.</p>
@@ -29,8 +27,6 @@
         <input type="submit" value="Register" id="submit">
     </form>
 
-<<<<<<< HEAD
+
 <c:import url="/includes/footer.jsp" />
-=======
-<%@ include file="/includes/footer.jsp" %>
->>>>>>> b1afbd999bd42958f471e97f7700f611520e5d6a
+

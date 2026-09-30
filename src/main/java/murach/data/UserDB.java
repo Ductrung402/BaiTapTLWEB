@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package murach.data;
 
 import jakarta.persistence.EntityManager;
@@ -45,17 +44,4 @@ public class UserDB {
         User u = selectUser(email);
         return u != null;
     }
-=======
-package murach.data;
-
-import murach.business.User;
-
-public class UserDB {
-
-    public static long insert(User user) {
-        // Giả lập lưu user vào cơ sở dữ liệu
-        // Tạm thời trả về 1 để phục vụ logic luồng đi
-        return 1;
-    }
->>>>>>> b1afbd999bd42958f471e97f7700f611520e5d6a
 }

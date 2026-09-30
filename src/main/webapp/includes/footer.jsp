@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@ taglib prefix="m" uri="/WEB-INF/murach.tld" %>
 
     <br>
@@ -6,8 +6,6 @@
     <p style="font-size: 12px; text-align: center;">
         &copy; <m:currentYear/> TrungDuc
     </p>
-=======
-<p>&copy; Copyright ${currentYear} Mike Murach &amp; Associates</p>
->>>>>>> b1afbd999bd42958f471e97f7700f611520e5d6a
+
 </body>
 </html>
