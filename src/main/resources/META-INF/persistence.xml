@@ -12,6 +12,10 @@
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/murach?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="1234"/>
+            
+            <!-- THÊM DÒNG NÀY ĐỂ TRÁNH LỖI KHỞI ĐỘNG -->
+            <property name="eclipselink.deploy-on-startup" value="false"/>
+            
             <!-- Cho phép hiện log SQL ra màn hình -->
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>
